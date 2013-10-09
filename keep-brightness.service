@@ -1,0 +1,18 @@
+#  keep-brightness.service (for systemd)
+#  This script is used to run keep-brightness. 
+#  
+#  Written by Kintesh. visit kinte.sh
+[Unit]
+Description=Keep Screen Brightness by Kintesh
+After=plymouth-start.service
+Before=shutdown.target reboot.target halt.target
+
+[Service]
+Type=forking
+ExecStart=/opt/keep-brightness/keep-brightness start
+ExecStop=/opt/keep-brightness/keep-brightness stop
+TimeoutSec=0
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

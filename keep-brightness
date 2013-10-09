@@ -1,0 +1,21 @@
+#!/bin/sh
+# 
+# keep-brightness
+# This script is used to read and restore screen brightness value.
+# 
+# Written by Kintesh. visit kinte.sh
+
+case "$1" in
+  start)
+    cat /opt/keep-brightness/last_brightness > /sys/class/backlight/acpi_video0/brightness
+    ;;
+  stop)
+    cat /sys/class/backlight/acpi_video0/brightness > /opt/keep-brightness/last_brightness
+    ;;
+  *)
+    echo "Usage: keep-brightness {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
